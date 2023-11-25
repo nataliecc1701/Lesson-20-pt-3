@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %} Page Title {% endblock %}</title>
+</head>
+
+<body>
+    <h1>{% block heading %}{% endblock %}</h1>
+    
+    {% for msg in get_flashed_messages() %}
+        <p>{{ msg }}</p>
+    {% endfor %}
+    
+    {% block content %} This is an unfilled content block. You should never see this {% endblock %}
+</body>
+</html>
