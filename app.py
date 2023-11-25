@@ -16,9 +16,17 @@ def index_route():
 
 @app.route("/questions/<question_num>")
 def question_route(question_num):
-    return render_template("question.html",
+    if int(question_num) == len(responses):
+        return render_template("question.html",
                            question_num = int(question_num), survey = current_survey,
                            question=current_survey.questions[int(question_num)])
+    else:
+        if len(responses) < len(current_survey.questions):
+            flash("Questions must be done in order!")
+            return redirect("/questions/" + str(len(responses)))
+        else:
+            flash("The survey has already been completed")
+            return redirect("/thank-you")
 
 @app.route("/answer", methods=["POST"])
 def record_answer():

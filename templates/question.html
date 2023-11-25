@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %} {{ survey.title }}{% endblock %}
-{% block heading %} Question {{ question_num }} {% endblock %}
+{% block heading %} Question {{ question_num + 1}} {% endblock %}
 
 {% block content %}
     {{ question.question }}
