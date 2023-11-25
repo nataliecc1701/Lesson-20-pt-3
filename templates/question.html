@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ survey.title }}{% endblock %}
+{% block heading %} Question {{ question_num }} {% endblock %}
+
+{% block content %}
+    {{ question.question }}
+    <form action="/answer" method="post">
+        {% for choice in question.choices %}
+            <label for={{choice}}>{{choice}}</label>
+            <input type="radio" id={{choice}} value={{choice}} name="survey-question">
+        {% endfor %}
+        {% if question.allow_text %}
+            <input type="text" id="survey-text" name="survey-text">
+        {% endif %}
+        <button type="submit">Next</button>
+    </form>
+{% endblock %}
