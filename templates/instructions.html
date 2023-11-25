@@ -6,5 +6,7 @@
 {% block content %}
     <p>{{survey.instructions}}</p>
     <p>Click the button below to begin</p>
-    <div><a href="/questions/0"><button type=button>Start Survey</button></a></div>
+    <form action="/new" method="POST">
+        <button type=submit>Start Survey</button>
+    </form>
 {% endblock %}
