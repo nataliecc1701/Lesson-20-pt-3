@@ -31,7 +31,10 @@ def question_route(question_num):
 @app.route("/answer", methods=["POST"])
 def record_answer():
     ans = request.form.get("survey-question", None)
-    if ans:
+    
+    if len(responses) > int(request.referrer[-1]):
+        flash ("Question already answered!")
+    elif ans:
         responses.append(ans)
     else:
         flash("Answer Required!")
