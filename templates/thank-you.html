@@ -5,5 +5,10 @@
 
 {% block content %}
     <p>Thank you for completing the {{ survey.title }}</p>
-    <p>Your responses were {{ responses }}</p>
+    <p>Your responses were
+        {%for rsp in responses %}
+            {{ rsp }}, 
+        {% endfor %}
+    </p>
+    <p><a href="/">Back to entry page</a></p>
 {% endblock %}
