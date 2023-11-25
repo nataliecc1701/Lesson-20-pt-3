@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ survey.title }} {% endblock %}
+{% block heading %} Thank you! {% endblock %}
+
+{% block content %}
+    <p>Thank you for completing the {{ survey.title }}</p>
+    <p>Your responses were {{ responses }}</p>
+{% endblock %}

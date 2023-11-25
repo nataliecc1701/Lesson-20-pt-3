@@ -4,6 +4,7 @@ from flask_debugtoolbar import DebugToolbarExtension
 
 app=Flask(__name__)
 app.config["SECRET_KEY"] = "shhhh!!"
+app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
 debug = DebugToolbarExtension(app)
 
 responses = []
@@ -26,6 +27,14 @@ def record_answer():
         responses.append(ans)
     else:
         flash("Answer Required!")
-    # this should send you to the right page regardless
-    # (unless it sends you out of bounds or you've been manually inputting question numbers)
-    return redirect("/questions/" + str(len(responses)))
+    
+    if len(responses) < len(current_survey.questions):
+        return redirect("/questions/" + str(len(responses)))
+        # this should go to the next page if you answered or back to the current one
+        # if you did not
+    else:
+        return redirect("/thank-you")
+    
+@app.route("/thank-you")
+def thank_you():
+    return render_template("thank-you.html", survey=current_survey, responses=responses)

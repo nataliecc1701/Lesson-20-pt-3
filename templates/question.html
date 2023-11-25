@@ -8,7 +8,7 @@
     <form action="/answer" method="post">
         {% for choice in question.choices %}
             <label for={{choice}}>{{choice}}</label>
-            <input type="radio" id={{choice}} value={{choice}} name="survey-question">
+            <input type="radio" id="{{choice}}" value="{{choice}}" name="survey-question">
         {% endfor %}
         {% if question.allow_text %}
             <input type="text" id="survey-text" name="survey-text">
